@@ -1,6 +1,7 @@
 package com.stonks.countydatamanagement.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.stonks.countydatamanagement.dto.IncomeDTO;
+import com.stonks.countydatamanagement.entities.views.IncomeSumView;
 import com.stonks.countydatamanagement.services.IncomeService;
 
 @RestController
@@ -39,6 +41,12 @@ public class IncomeController {
 	public ResponseEntity<IncomeDTO> findById (@PathVariable Long id){
 		IncomeDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<IncomeSumView>> findAllIncomeSum(){
+		List<IncomeSumView> list = service.findIncomePerCounty();
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@PutMapping(value = "/{id}")

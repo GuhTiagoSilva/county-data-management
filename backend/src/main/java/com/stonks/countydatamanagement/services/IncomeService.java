@@ -1,5 +1,6 @@
 package com.stonks.countydatamanagement.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.stonks.countydatamanagement.dto.IncomeDTO;
 import com.stonks.countydatamanagement.entities.Income;
 import com.stonks.countydatamanagement.entities.enums.IncomeType;
+import com.stonks.countydatamanagement.entities.views.IncomeSumView;
 import com.stonks.countydatamanagement.repositories.IncomeRepository;
+import com.stonks.countydatamanagement.repositories.IncomeViewRepository;
 import com.stonks.countydatamanagement.services.exceptions.DatabaseException;
 import com.stonks.countydatamanagement.services.exceptions.ResourceNotFoundException;
 
@@ -23,6 +26,9 @@ public class IncomeService {
 	@Autowired
 	private IncomeRepository repository;
 
+	@Autowired
+	private IncomeViewRepository incomeSumRepository;
+	
 	@Transactional
 	public IncomeDTO insert(IncomeDTO dto) {
 		Income entity = new Income();
@@ -49,6 +55,12 @@ public class IncomeService {
 		Optional<Income> result = repository.findById(id);
 		Income entity = result.orElseThrow(() -> new ResourceNotFoundException("Id Not Found: " + id));
 		return new IncomeDTO(entity);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<IncomeSumView> findIncomePerCounty() {
+		List<IncomeSumView> list = incomeSumRepository.findIncomeSumByCounty();
+		return list;
 	}
 
 	public void delete(Long id) {
