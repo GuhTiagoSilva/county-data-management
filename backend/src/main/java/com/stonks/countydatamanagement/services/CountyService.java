@@ -5,9 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stonks.countydatamanagement.dto.CountyDTO;
+import com.stonks.countydatamanagement.dto.ExpenseDTO;
+import com.stonks.countydatamanagement.dto.IncomeDTO;
 import com.stonks.countydatamanagement.entities.County;
+import com.stonks.countydatamanagement.entities.Expense;
+import com.stonks.countydatamanagement.entities.Income;
 import com.stonks.countydatamanagement.entities.Website;
 import com.stonks.countydatamanagement.repositories.CountyRepository;
+import com.stonks.countydatamanagement.repositories.ExpenseRepository;
+import com.stonks.countydatamanagement.repositories.IncomeRepository;
 import com.stonks.countydatamanagement.repositories.WebsiteRepository;
 
 @Service
@@ -18,6 +24,13 @@ public class CountyService {
 	
 	@Autowired
 	private WebsiteRepository websiteRepository;
+	
+	@Autowired
+	private IncomeRepository incomeRepository;
+	
+	@Autowired
+	private ExpenseRepository expenseRepository;
+	
 	
 	@Transactional
 	public CountyDTO insert (CountyDTO dto) {
@@ -48,13 +61,21 @@ public class CountyService {
 	}
 	
 	private void copyDtoToEntity(CountyDTO dto, County entity) {
-		
 		Website website = websiteRepository.getById(dto.getWebSiteId());
-		
 		entity.setCountyName(dto.getCountyName());
 		entity.setMayorName(dto.getMayorName());
 		entity.setPopulation(dto.getPopulation());
 		entity.setWebSite(website);
+		
+		for (IncomeDTO incomeDTO : dto.getIncomes()) {
+			Income income = incomeRepository.getById(incomeDTO.getId());
+			entity.getIncomes().add(income);
+		}
+		
+		for (ExpenseDTO expenseDTO : dto.getExpenses()) {
+			Expense expense = expenseRepository.getById(expenseDTO.getId());
+			entity.getExpenses().add(expense);
+		}
 		
 	}
 	

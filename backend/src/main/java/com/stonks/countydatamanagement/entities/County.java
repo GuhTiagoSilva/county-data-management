@@ -30,7 +30,7 @@ public class County implements Serializable{
 	private Website webSite;
 	
 	@OneToMany (mappedBy = "county")
-	private List<Income> income = new ArrayList<>();
+	private List<Income> incomes = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "county")
 	private List<Expense> expenses = new ArrayList<>();
@@ -85,6 +85,22 @@ public class County implements Serializable{
 	
 	public void setWebSite(Website webSite) {
 		this.webSite = webSite;
+	}
+	
+	public List<Income> getIncomes() {
+		return incomes;
+	}
+	
+	public void setIncomes(List<Income> incomes) {
+		this.incomes = incomes;
+	}
+	
+	public List<Expense> getExpenses() {
+		return expenses;
+	}
+	
+	public void setExpenses(List<Expense> expenses) {
+		this.expenses = expenses;
 	}
 
 	@Override

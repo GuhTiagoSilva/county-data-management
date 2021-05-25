@@ -3,6 +3,8 @@ package com.stonks.countydatamanagement.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.stonks.countydatamanagement.entities.Income;
+
 public class IncomeDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -30,6 +32,17 @@ public class IncomeDTO implements Serializable {
 		this.font = font;
 		this.application = application;
 		this.type = type;
+	}
+	
+	public IncomeDTO(Income entity) {
+		id = entity.getId();
+		description = entity.getDescription();
+		budgetedValue = entity.getBudgetedValue();
+		collectedValue = entity.getCollectedValue();
+		incomeDate = entity.getIncomeDate();
+		font = entity.getFont();
+		application = entity.getApplication();
+		type = entity.getType().getCode();
 	}
 
 	public Long getId() {
