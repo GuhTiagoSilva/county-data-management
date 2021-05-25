@@ -11,7 +11,7 @@ public class CountyDTO implements Serializable {
 	private String countyName;
 	private Long population;
 	private String mayorName;
-	private WebSiteDTO webSite;
+	private Long webSiteId;
 	private List<IncomeDTO> incomes = new ArrayList<>();
 	private List<ExpenseDTO> expenses = new ArrayList<>();
 
@@ -19,16 +19,13 @@ public class CountyDTO implements Serializable {
 
 	}
 
-	public CountyDTO(Long id, String countyName, Long population, String mayorName, WebSiteDTO webSite,
-			List<IncomeDTO> incomes, List<ExpenseDTO> expenses) {
+	public CountyDTO(Long id, String countyName, Long population, String mayorName, Long webSiteId) {
 		super();
 		this.id = id;
 		this.countyName = countyName;
 		this.population = population;
 		this.mayorName = mayorName;
-		this.webSite = webSite;
-		this.incomes = incomes;
-		this.expenses = expenses;
+		this.webSiteId = webSiteId;
 	}
 
 	public Long getId() {
@@ -63,12 +60,12 @@ public class CountyDTO implements Serializable {
 		this.mayorName = mayorName;
 	}
 
-	public WebSiteDTO getWebSite() {
-		return webSite;
+	public Long getWebSiteId() {
+		return webSiteId;
 	}
 
-	public void setWebSite(WebSiteDTO webSite) {
-		this.webSite = webSite;
+	public void setWebSiteId(Long webSiteId) {
+		this.webSiteId = webSiteId;
 	}
 
 	public List<IncomeDTO> getIncomes() {

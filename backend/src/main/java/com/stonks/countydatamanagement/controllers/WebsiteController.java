@@ -14,32 +14,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.stonks.countydatamanagement.dto.WebSiteDTO;
-import com.stonks.countydatamanagement.services.WebSiteService;
+import com.stonks.countydatamanagement.dto.WebsiteDTO;
+import com.stonks.countydatamanagement.services.WebsiteService;
 
 @RestController
 @RequestMapping(value = "/websites")
-public class WebSiteController {
+public class WebsiteController {
 
 	@Autowired
-	private WebSiteService service;
+	private WebsiteService service;
 	
 	@PostMapping
-	public ResponseEntity<WebSiteDTO> insert(@RequestBody WebSiteDTO dto){
-		WebSiteDTO webSiteDTO = service.insert(dto);
+	public ResponseEntity<WebsiteDTO> insert(@RequestBody WebsiteDTO dto){
+		WebsiteDTO webSiteDTO = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(webSiteDTO.getId()).toUri();
 		return ResponseEntity.created(uri).body(webSiteDTO);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<WebSiteDTO> update(@PathVariable Long id, @RequestBody WebSiteDTO dto){
-		WebSiteDTO webSiteDTO = service.update(id, dto);
+	public ResponseEntity<WebsiteDTO> update(@PathVariable Long id, @RequestBody WebsiteDTO dto){
+		WebsiteDTO webSiteDTO = service.update(id, dto);
 		return ResponseEntity.ok().body(webSiteDTO);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<WebSiteDTO> findById (@PathVariable Long id){
-		WebSiteDTO dto = service.findById(id);
+	public ResponseEntity<WebsiteDTO> findById (@PathVariable Long id){
+		WebsiteDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,8 +25,9 @@ public class County implements Serializable{
 	private Long population;
 	private String mayorName;
 	
-	@OneToOne(mappedBy = "county")
-	private WebSite webSite;
+	@OneToOne
+	@JoinColumn(name ="website_id")
+	private Website webSite;
 	
 	@OneToMany (mappedBy = "county")
 	private List<Income> income = new ArrayList<>();

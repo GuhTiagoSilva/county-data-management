@@ -6,13 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_website")
-public class WebSite implements Serializable {
+public class Website implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,15 +21,14 @@ public class WebSite implements Serializable {
 	
 	private String link;
 	
-	@OneToOne
-	@JoinColumn(name = "county_id")
+	@OneToOne(mappedBy = "webSite")
 	private County county;
 	
-	public WebSite() {
+	public Website() {
 		
 	}
 
-	public WebSite(Long id, String link, County county) {
+	public Website(Long id, String link, County county) {
 		super();
 		this.id = id;
 		this.link = link;
@@ -77,7 +75,7 @@ public class WebSite implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		WebSite other = (WebSite) obj;
+		Website other = (Website) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

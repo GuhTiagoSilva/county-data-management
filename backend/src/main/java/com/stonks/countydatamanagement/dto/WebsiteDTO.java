@@ -2,25 +2,24 @@ package com.stonks.countydatamanagement.dto;
 
 import java.io.Serializable;
 
-import com.stonks.countydatamanagement.entities.WebSite;
+import com.stonks.countydatamanagement.entities.Website;
 
-public class WebSiteDTO implements Serializable{
+public class WebsiteDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String link;
-	private CountyDTO county;
 	
-	public WebSiteDTO() {
+	public WebsiteDTO() {
 		
 	}
 	
-	public WebSiteDTO(WebSite entity) {
+	public WebsiteDTO(Website entity) {
 		this.id = entity.getId();
 		this.link = entity.getLink();
 	}
 
-	public WebSiteDTO(Long id, String link) {
+	public WebsiteDTO(Long id, String link) {
 		super();
 		this.id = id;
 		this.link = link;
@@ -58,7 +57,7 @@ public class WebSiteDTO implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		WebSiteDTO other = (WebSiteDTO) obj;
+		WebsiteDTO other = (WebsiteDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
