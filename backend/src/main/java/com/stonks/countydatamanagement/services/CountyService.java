@@ -1,6 +1,12 @@
 package com.stonks.countydatamanagement.services;
 
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +21,8 @@ import com.stonks.countydatamanagement.repositories.CountyRepository;
 import com.stonks.countydatamanagement.repositories.ExpenseRepository;
 import com.stonks.countydatamanagement.repositories.IncomeRepository;
 import com.stonks.countydatamanagement.repositories.WebsiteRepository;
+import com.stonks.countydatamanagement.services.exceptions.DatabaseException;
+import com.stonks.countydatamanagement.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CountyService {
@@ -44,20 +52,32 @@ public class CountyService {
 	
 	@Transactional(readOnly = true)
 	public CountyDTO findById(Long id) {
-		County county = repository.findById(id).get();
+		Optional<County> result = repository.findById(id);
+		County county = result.orElseThrow(() -> new ResourceNotFoundException("Id Not Found: " + id));
 		return new CountyDTO(county);		
 	}
 	
 	@Transactional
 	public CountyDTO update (Long id, CountyDTO dto) {
-		County entity = repository.getById(id);
-		copyDtoToEntity(dto, entity);
-		entity = repository.save(entity);
-		return new CountyDTO(entity);
+		try {
+			County entity = repository.getById(id);
+			copyDtoToEntity(dto, entity);
+			entity = repository.save(entity);
+			return new CountyDTO(entity);	
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Entity Not Found");
+		}
+		
 	}
 	
 	public void delete(Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);	
+		}catch(EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id Not Found: " + id);
+		}catch( DataIntegrityViolationException e ) {
+			throw new DatabaseException("Database Exception");
+		}
 	}
 	
 	private void copyDtoToEntity(CountyDTO dto, County entity) {

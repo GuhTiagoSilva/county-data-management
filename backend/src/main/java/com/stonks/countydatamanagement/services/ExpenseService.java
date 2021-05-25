@@ -1,6 +1,12 @@
 package com.stonks.countydatamanagement.services;
 
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +14,8 @@ import com.stonks.countydatamanagement.dto.ExpenseDTO;
 import com.stonks.countydatamanagement.entities.Expense;
 import com.stonks.countydatamanagement.entities.enums.ExpenseType;
 import com.stonks.countydatamanagement.repositories.ExpenseRepository;
+import com.stonks.countydatamanagement.services.exceptions.DatabaseException;
+import com.stonks.countydatamanagement.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ExpenseService {
@@ -27,20 +35,32 @@ public class ExpenseService {
 	
 	@Transactional(readOnly = true)
 	public ExpenseDTO findById (Long id) {
-		Expense expense = repository.findById(id).get();
+		Optional<Expense> result = repository.findById(id);
+		Expense expense = result.orElseThrow(() -> new ResourceNotFoundException("Id Not Found: " + id));
 		return new ExpenseDTO(expense);
 	}
 	
 	@Transactional
 	public ExpenseDTO update(Long id, ExpenseDTO dto) {
-		Expense expense = repository.getById(id);
-		copyDtoToEntity(dto, expense);
-		expense = repository.save(expense);
-		return new ExpenseDTO(expense);
+		try {
+			Expense expense = repository.getById(id);
+			copyDtoToEntity(dto, expense);
+			expense = repository.save(expense);
+			return new ExpenseDTO(expense);	
+		}catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Entity Not Found");
+		}
+		
 	}
 	
 	public void delete(Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);	
+		}catch( EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id Not Found: " + id);
+		}catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Database Exception");
+		}
 	}
 	
 	private void copyDtoToEntity(ExpenseDTO dto, Expense entity) {
