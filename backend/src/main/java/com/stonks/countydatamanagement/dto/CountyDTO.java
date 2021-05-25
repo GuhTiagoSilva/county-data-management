@@ -10,7 +10,7 @@ public class CountyDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String countyName;
+	private String name;
 	private Long population;
 	private String mayorName;
 	private Long webSiteId;
@@ -21,10 +21,10 @@ public class CountyDTO implements Serializable {
 
 	}
 
-	public CountyDTO(Long id, String countyName, Long population, String mayorName, Long webSiteId) {
+	public CountyDTO(Long id, String name, Long population, String mayorName, Long webSiteId) {
 		super();
 		this.id = id;
-		this.countyName = countyName;
+		this.name = name;
 		this.population = population;
 		this.mayorName = mayorName;
 		this.webSiteId = webSiteId;
@@ -32,7 +32,7 @@ public class CountyDTO implements Serializable {
 	
 	public CountyDTO(County entity) {
 		id = entity.getId();
-		countyName = entity.getCountyName();
+		name = entity.getName();
 		population = entity.getPopulation();
 		mayorName = entity.getMayorName();
 		webSiteId = entity.getWebSite().getId();
@@ -46,12 +46,12 @@ public class CountyDTO implements Serializable {
 		this.id = id;
 	}
 
-	public String getCountyName() {
-		return countyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCountyName(String name) {
-		this.countyName = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getPopulation() {

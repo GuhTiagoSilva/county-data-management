@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,8 @@ public class County implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String countyName;
+	@Column(name = "name")
+	private String name;
 	private Long population;
 	private String mayorName;
 	
@@ -39,10 +41,10 @@ public class County implements Serializable{
 		
 	}
 
-	public County(Long id, String countyName, Long population, String mayorName) {
+	public County(Long id, String name, Long population, String mayorName) {
 		super();
 		this.id = id;
-		this.countyName = countyName;
+		this.name = name;
 		this.population = population;
 		this.mayorName = mayorName;
 	}
@@ -55,12 +57,12 @@ public class County implements Serializable{
 		this.id = id;
 	}
 
-	public String getCountyName() {
-		return countyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCountyName(String name) {
-		this.countyName = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getPopulation() {

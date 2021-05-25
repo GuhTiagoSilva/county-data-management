@@ -1,6 +1,5 @@
 package com.stonks.countydatamanagement.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -8,6 +7,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,8 +78,8 @@ public class CountyService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<CountyView> findAllJoined(){
-		List<CountyView> countyView = countyViewRepository.findAllCountyView();
+	public Page<CountyView> findAllJoined(PageRequest pageRequest){
+		Page<CountyView> countyView = countyViewRepository.findAllCountyView(pageRequest);
 		return countyView;
 	}
 	
@@ -94,7 +95,7 @@ public class CountyService {
 	
 	private void copyDtoToEntity(CountyDTO dto, County entity) {
 		Website website = websiteRepository.getById(dto.getWebSiteId());
-		entity.setCountyName(dto.getCountyName());
+		entity.setName(dto.getName());
 		entity.setMayorName(dto.getMayorName());
 		entity.setPopulation(dto.getPopulation());
 		entity.setWebSite(website);

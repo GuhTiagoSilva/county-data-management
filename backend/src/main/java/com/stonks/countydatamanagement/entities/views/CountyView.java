@@ -15,7 +15,7 @@ public class CountyView implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String countyName;
+	private String name;
 	private Long population;
 	@Column(name = "link")
 	private String websiteLink;
@@ -29,11 +29,11 @@ public class CountyView implements Serializable{
 		
 	}
 
-	public CountyView(Long id, String countyName, Long population, String websiteLink, String application,
+	public CountyView(Long id, String name, Long population, String websiteLink, String application,
 			Double budgetedValue, Double collectedValue, Instant incomeDate, Integer type) {
 		super();
 		this.id = id;
-		this.countyName = countyName;
+		this.name = name;
 		this.population = population;
 		this.websiteLink = websiteLink;
 		this.application = application;
@@ -51,12 +51,12 @@ public class CountyView implements Serializable{
 		this.id = id;
 	}
 
-	public String getCountyName() {
-		return countyName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCountyName(String countyName) {
-		this.countyName = countyName;
+	public void setCountyName(String name) {
+		this.name = name;
 	}
 
 	public Long getPopulation() {
