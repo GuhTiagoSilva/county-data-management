@@ -1,5 +1,6 @@
 package com.stonks.countydatamanagement.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -17,7 +18,9 @@ import com.stonks.countydatamanagement.entities.County;
 import com.stonks.countydatamanagement.entities.Expense;
 import com.stonks.countydatamanagement.entities.Income;
 import com.stonks.countydatamanagement.entities.Website;
+import com.stonks.countydatamanagement.entities.views.CountyView;
 import com.stonks.countydatamanagement.repositories.CountyRepository;
+import com.stonks.countydatamanagement.repositories.CountyViewRepository;
 import com.stonks.countydatamanagement.repositories.ExpenseRepository;
 import com.stonks.countydatamanagement.repositories.IncomeRepository;
 import com.stonks.countydatamanagement.repositories.WebsiteRepository;
@@ -38,6 +41,9 @@ public class CountyService {
 	
 	@Autowired
 	private ExpenseRepository expenseRepository;
+	
+	@Autowired
+	private CountyViewRepository countyViewRepository;
 	
 	
 	@Transactional
@@ -68,6 +74,12 @@ public class CountyService {
 			throw new ResourceNotFoundException("Entity Not Found");
 		}
 		
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CountyView> findAllJoined(){
+		List<CountyView> countyView = countyViewRepository.findAllCountyView();
+		return countyView;
 	}
 	
 	public void delete(Long id) {
