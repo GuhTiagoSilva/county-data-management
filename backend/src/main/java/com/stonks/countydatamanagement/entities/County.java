@@ -20,7 +20,7 @@ public class County implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String countyName;
 	private Long population;
 	private String mayorName;
 	
@@ -37,10 +37,10 @@ public class County implements Serializable{
 		
 	}
 
-	public County(Long id, String name, Long population, String mayorName) {
+	public County(Long id, String countyName, Long population, String mayorName) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.countyName = countyName;
 		this.population = population;
 		this.mayorName = mayorName;
 	}
@@ -53,12 +53,12 @@ public class County implements Serializable{
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getCountyName() {
+		return countyName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCountyName(String name) {
+		this.countyName = name;
 	}
 
 	public Long getPopulation() {

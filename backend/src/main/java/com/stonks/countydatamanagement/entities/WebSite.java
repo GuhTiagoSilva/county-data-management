@@ -30,10 +30,11 @@ public class WebSite implements Serializable {
 		
 	}
 
-	public WebSite(Long id, String link) {
+	public WebSite(Long id, String link, County county) {
 		super();
 		this.id = id;
 		this.link = link;
+		this.county = county;
 	}
 
 	public Long getId() {
@@ -50,6 +51,14 @@ public class WebSite implements Serializable {
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+	
+	public County getCounty() {
+		return county;
+	}
+	
+	public void setCounty(County county) {
+		this.county = county;
 	}
 
 	@Override

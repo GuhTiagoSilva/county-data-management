@@ -2,14 +2,22 @@ package com.stonks.countydatamanagement.dto;
 
 import java.io.Serializable;
 
+import com.stonks.countydatamanagement.entities.WebSite;
+
 public class WebSiteDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String link;
+	private CountyDTO county;
 	
 	public WebSiteDTO() {
 		
+	}
+	
+	public WebSiteDTO(WebSite entity) {
+		this.id = entity.getId();
+		this.link = entity.getLink();
 	}
 
 	public WebSiteDTO(Long id, String link) {
