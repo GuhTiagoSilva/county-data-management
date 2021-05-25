@@ -1,8 +1,9 @@
 import { DiffieHellman } from "crypto";
 import React from "react";
-import './styles.scss'
-import {ReactComponent as MainImage} from '../../core/assets/images/main-image.svg'
+import "./styles.scss";
+import { ReactComponent as MainImage } from "../../core/assets/images/main-image.svg";
 import ButtonIcon from "../../core/components/ButtonIcon";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -15,7 +16,9 @@ const Home = () => {
           <p className="text-subtitle">
             Ajudaremos você a analisar esses dados <br /> com nosso Dashboard
           </p>
+          <Link to="/incomes">
             <ButtonIcon text="CONSULTE AGORA" />
+          </Link>
         </div>
 
         <div className="col-6">
