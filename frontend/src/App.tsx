@@ -1,10 +1,11 @@
 import React from 'react';
+import './core/assets/styles/custom.scss'
+import './app.scss'
+import Navbar from './core/components/Navbar';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+      <Navbar/>
   );
 }
 
