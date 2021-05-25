@@ -3,6 +3,8 @@ package com.stonks.countydatamanagement.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.stonks.countydatamanagement.entities.Expense;
+
 public class ExpenseDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -36,6 +38,20 @@ public class ExpenseDTO implements Serializable {
 		this.hiredValue = hiredValue;
 		this.budgetedValue = budgetedValue;
 		this.type = type;
+	}
+	
+	public ExpenseDTO(Expense entity) {
+		id = entity.getId();
+		isCommitted = entity.isCommitted();
+		isFinished = entity.isFinished();
+		isPayed = entity.isPayed();
+		creditorName = entity.getCreditorName();
+		expenseDate = entity.getExpenseDate();
+		smash = entity.getSmash();
+		subSmash = entity.getSubSmash();
+		hiredValue = entity.getHiredValue();
+		budgetedValue = entity.getBudgetedValue();
+		type = entity.getType().getCode();
 	}
 
 	public Long getId() {
