@@ -19,7 +19,7 @@ const DataTable = () => {
         <tbody>
           <tr>
             <td>1</td>
-            <td>Barry Allen</td>
+            <td>Educação</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
@@ -29,7 +29,7 @@ const DataTable = () => {
           </tr>
           <tr>
             <td>2</td>
-            <td>Barry Allen</td>
+            <td>Cultura</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
@@ -39,7 +39,7 @@ const DataTable = () => {
           </tr>
           <tr>
             <td>3</td>
-            <td>Barry Allen</td>
+            <td>Musica</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
@@ -49,7 +49,7 @@ const DataTable = () => {
           </tr>
           <tr>
             <td>4</td>
-            <td>Barry Allen</td>
+            <td>Saude</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
@@ -59,7 +59,7 @@ const DataTable = () => {
           </tr>
           <tr>
             <td>5</td>
-            <td>Barry Allen</td>
+            <td>Transporte</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
@@ -69,7 +69,7 @@ const DataTable = () => {
           </tr>
           <tr>
             <td>6</td>
-            <td>Barry Allen</td>
+            <td>Alimentacao</td>
             <td>34.00</td>
             <td>25.00</td>
             <td>23/05/2021</td>
