@@ -78,6 +78,14 @@ public class County implements Serializable{
 	public void setMayorName(String mayorName) {
 		this.mayorName = mayorName;
 	}
+	
+	public Website getWebSite() {
+		return webSite;
+	}
+	
+	public void setWebSite(Website webSite) {
+		this.webSite = webSite;
+	}
 
 	@Override
 	public int hashCode() {

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.stonks.countydatamanagement.entities.County;
+
 public class CountyDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +28,14 @@ public class CountyDTO implements Serializable {
 		this.population = population;
 		this.mayorName = mayorName;
 		this.webSiteId = webSiteId;
+	}
+	
+	public CountyDTO(County entity) {
+		id = entity.getId();
+		countyName = entity.getCountyName();
+		population = entity.getPopulation();
+		mayorName = entity.getMayorName();
+		webSiteId = entity.getWebSite().getId();
 	}
 
 	public Long getId() {
