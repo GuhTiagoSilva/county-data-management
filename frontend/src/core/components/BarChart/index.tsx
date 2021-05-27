@@ -1,7 +1,23 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import { IncomeSum } from '../../types/income';
+import { BASE_URL } from '../../utils/request';
+
+type SeriesData = {
+    name: string;
+    data: number[];
+}
+
+type ChartData = {
+    labels: {
+        categories: string[]
+    };
+    series: SeriesData[]
+}
 
 const BarChart = () => {
+
     const options = {
         plotOptions: {
             bar: {
