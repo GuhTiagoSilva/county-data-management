@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CountyPage } from "../../types/countyView";
 import { formatLocalDate } from "../../utils/format";
 import { BASE_URL } from "../../utils/request";

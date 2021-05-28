@@ -1,4 +1,3 @@
-import React from "react";
 import { CountyPage } from "../../types/countyView";
 
 type Props = {

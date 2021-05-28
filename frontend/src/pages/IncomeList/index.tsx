@@ -1,4 +1,3 @@
-import React from "react";
 import BarChart from "../../core/components/BarChart";
 import DataTable from "../../core/components/DataTable";
 import DonutChart from "../../core/components/DonutChart";

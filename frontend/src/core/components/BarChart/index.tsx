@@ -1,8 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
-import { IncomeSum } from '../../types/income';
-import { BASE_URL } from '../../utils/request';
 
 type SeriesData = {
     name: string;

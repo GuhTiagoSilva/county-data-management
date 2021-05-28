@@ -1,5 +1,3 @@
-import { DiffieHellman } from "crypto";
-import React from "react";
 import "./styles.scss";
 import { ReactComponent as MainImage } from "../../core/assets/images/main-image.svg";
 import ButtonIcon from "../../core/components/ButtonIcon";
