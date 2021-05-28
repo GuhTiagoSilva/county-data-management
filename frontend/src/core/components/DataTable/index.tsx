@@ -59,7 +59,7 @@ const DataTable = () => {
                   {item.collectedValue.toFixed(2)}{" "}
                 </td>
                 <td> {formatLocalDate(item.incomeDate, "dd/MM/yyyy")} </td>
-                <td> {item.type == 1 ? "RECEITA_1" : "RECEITA_2"} </td>
+                <td> {item.type === 1 ? "RECEITA_1" : "RECEITA_2"} </td>
               </tr>
             ))}
           </tbody>
