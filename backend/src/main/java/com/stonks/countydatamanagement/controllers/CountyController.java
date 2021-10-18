@@ -1,7 +1,9 @@
 package com.stonks.countydatamanagement.controllers;
 
 import java.net.URI;
+import java.util.List;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,18 +54,11 @@ public class CountyController {
 		CountyDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<Page<CountyView>> findAll(@RequestParam(value = "name", defaultValue = "") String name,
-			@RequestParam(value = "page", defaultValue = "0") Integer page,
-			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy){
-		
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction) ,orderBy);
-		
-		Page<CountyView> counties = service.findAllJoined(pageRequest);
-		return ResponseEntity.ok().body(counties);
+	public ResponseEntity<List<CountyDTO>> findAll() {
+		List<CountyDTO> counties = service.findAll();
+		return ResponseEntity.ok(counties);
 	}
 	
 	@DeleteMapping

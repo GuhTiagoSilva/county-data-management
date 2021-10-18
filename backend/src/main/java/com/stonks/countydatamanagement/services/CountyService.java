@@ -1,6 +1,8 @@
 package com.stonks.countydatamanagement.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -81,6 +83,12 @@ public class CountyService {
 	public Page<CountyView> findAllJoined(PageRequest pageRequest){
 		Page<CountyView> countyView = countyViewRepository.findAllCountyView(pageRequest);
 		return countyView;
+	}
+
+	@Transactional(readOnly = true)
+	public List<CountyDTO> findAll() {
+		List<County> counties = repository.findAll();
+		return counties.stream().map(county -> new CountyDTO(county)).collect(Collectors.toList());
 	}
 	
 	public void delete(Long id) {
