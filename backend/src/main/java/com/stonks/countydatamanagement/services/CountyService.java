@@ -105,7 +105,7 @@ public class CountyService {
 		entity.setName(dto.getName());
 		entity.setMayorName(dto.getMayorName());
 		entity.setPopulation(dto.getPopulation());
-		entity.setWebSite(new Website(1L, "", new County(1L,"", 3000L, "")));
+		entity.setWebSite(null);
 
 	}
 	
