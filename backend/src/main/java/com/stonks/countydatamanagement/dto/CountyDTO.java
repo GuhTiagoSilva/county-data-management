@@ -35,7 +35,6 @@ public class CountyDTO implements Serializable {
 		name = entity.getName();
 		population = entity.getPopulation();
 		mayorName = entity.getMayorName();
-		webSiteId = entity.getWebSite().getId();
 	}
 
 	public Long getId() {
