@@ -107,16 +107,6 @@ public class CountyService {
 		entity.setPopulation(dto.getPopulation());
 		entity.setWebSite(new Website(1L, "", new County(1L,"", 3000L, "")));
 
-		for (IncomeDTO incomeDTO : dto.getIncomes()) {
-			Income income = incomeRepository.getById(incomeDTO.getId());
-			entity.getIncomes().add(income);
-		}
-
-		for (ExpenseDTO expenseDTO : dto.getExpenses()) {
-			Expense expense = expenseRepository.getById(expenseDTO.getId());
-			entity.getExpenses().add(expense);
-		}
-
 	}
 	
 }
